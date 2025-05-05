@@ -6,7 +6,7 @@ let express = require("express")
 let router = express.Router()
 
 router.get("/", UserController.FetchAll)
-router.post("/login", validate(UserValidation.create.body), UserController.Login)
-router.post("/register", validate(UserValidation.update.body), UserController.Register)
+router.post("/login", UserController.Login)
+router.post("/register", validate(UserValidation.create.body), UserController.Register)
 
 module.exports = router
