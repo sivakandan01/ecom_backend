@@ -1,4 +1,5 @@
 let { UserService } = require("../services/index")
+const jwt = require('jsonwebtoken');
 
 class UserController {
     static async FetchAll(req, res){
@@ -13,10 +14,16 @@ class UserController {
         try{
             let dt = req.body
             let response = await UserService.Login(dt)
+
             if(!response){
                 throw new Error("Login Failed!");
             }
-            res.status(200).json({success: true, data: response})
+
+            let payload = { id: dt.id, email: dt.email }
+            let secret = process.env.JWT_SECRET || "shinChan"
+            let token = jwt.sign(payload, secret, {expiresIn: '1h'})
+
+            res.status(200).json({success: true, data: response, AccessToken: token})
         } catch (err) {
             res.status(404).json({message: err.message})
         }
