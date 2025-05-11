@@ -18,6 +18,15 @@ class ProductController {
             res.status(404).json({success: false, message: "unable to fetch product"})
         }
     }
+    static async FetchByName(req, res){
+        try{
+            let name = req.params
+            let response = await ProductService.FetchByName(name)
+            res.status(200).json({success: true, data: response})
+        } catch (err){
+            res.status(404).json({success: false, message: "unable to fetch product by name"})
+        }
+    }
     static async AddProduct(req, res){
         try{
             let dt = req.body

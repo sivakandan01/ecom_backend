@@ -7,7 +7,11 @@ let router = express.Router()
 
 router.get("/", ProductController.FetchAll)
 router.get("/:id", ProductController.FetchById)
-router.post("/add", validate(ProductValidation.create.body), ProductController.AddProduct)
+router.get("/:name", ProductController.FetchByName)
+router.post("/add", 
+    validate(ProductValidation.create.body), 
+    ProductController.AddProduct
+)
 router.put("/update/:id", validate(ProductValidation.update.body), ProductController.UpdateProduct)
 router.delete("/delete/:id", ProductController.DeleteProduct)
 

@@ -17,6 +17,14 @@ class ProductService {
             return err
         }
     }
+    static async FetchByName(name){
+        try{
+            let response = await findAll({where: {name: name}})
+            return response
+        } catch(err){
+            return err
+        }
+    }
     static async AddProduct(data){
         try{
             let response = await Products.create(data)
