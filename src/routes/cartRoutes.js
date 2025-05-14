@@ -5,6 +5,7 @@ let router = express.Router()
 
 router.get("/", CartController.FetchAll)
 router.get("/:id", CartController.FetchById)
+router.get("/user/:id", CartController.fetchByUserId)
 router.post("/add", CartController.AddCart)
 router.put("/update/:id", CartController.UpdateCart)
 router.delete("/delete/:id", CartController.DeleteCart)
