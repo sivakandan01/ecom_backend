@@ -53,7 +53,7 @@ class ProductController {
     }
     static async DeleteProduct(req, res){
         try{
-            let id = req.params
+            let { id } = req.params
             let response = await ProductService.DeleteProduct(id)
             if(response){
                 res.status(200).json({success: true, message: "Product Deleted successfully"})

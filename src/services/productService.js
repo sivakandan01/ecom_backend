@@ -46,8 +46,10 @@ class ProductService {
     static async DeleteProduct(id){
         try{
             let response = await Products.findByPk(id)
-
-            response.destroy()
+            if (!response) {
+                throw new Error("Product item not found");
+            }
+            await response.destroy()
             return true
         } catch (err) {
             return err

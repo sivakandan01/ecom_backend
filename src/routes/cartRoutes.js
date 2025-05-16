@@ -11,4 +11,3 @@ router.put("/update/:id", CartController.UpdateCart)
 router.delete("/delete/:id", CartController.DeleteCart)
 
 module.exports = router
-  
