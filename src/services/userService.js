@@ -9,6 +9,14 @@ class UserService {
             throw err
         }
     }
+    static async FetchById(id){
+        try{
+            let response = await Users.findByPk(id)
+            return response 
+        } catch(err){
+            throw err
+        }
+    }
     static async Login(data){
         try{
             let user = await Users.findOne({where: {email: data.email}})
@@ -28,6 +36,16 @@ class UserService {
             let response = await Users.create(data)
             return response
         } catch(err) {
+            throw err
+        }
+    }
+    static async UpdateUser(data){
+        try{
+            let result = await Users.update(data ,{where : {id: data.id}})
+            
+            let response = await Users.findByPk(data.id)
+            return response
+        } catch(err){
             throw err
         }
     }

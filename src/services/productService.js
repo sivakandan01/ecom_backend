@@ -17,14 +17,6 @@ class ProductService {
             return err
         }
     }
-    static async FetchByName(name){
-        try{
-            let response = await findAll({where: {name: name}})
-            return response
-        } catch(err){
-            return err
-        }
-    }
     static async AddProduct(data){
         try{
             let response = await Products.create(data)
@@ -46,10 +38,8 @@ class ProductService {
     static async DeleteProduct(id){
         try{
             let response = await Products.findByPk(id)
-            if (!response) {
-                throw new Error("Product item not found");
-            }
-            await response.destroy()
+
+            response.destroy()
             return true
         } catch (err) {
             return err
